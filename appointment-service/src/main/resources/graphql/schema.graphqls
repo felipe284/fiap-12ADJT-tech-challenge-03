@@ -1,0 +1,37 @@
+type Query {
+    getPatientMedicalHistory(patientId: ID!): [MedicalHistory]
+    getMedicalHistory(id: ID!): MedicalHistory
+}
+
+type MedicalHistory {
+    id: ID!
+    patient: User!
+    appointment: Appointment!
+    diagnosis: String
+    treatment: String
+    medications: String
+    observations: String
+    createdAt: String
+    updatedAt: String
+}
+
+type User {
+    id: ID!
+    username: String!
+    email: String
+    fullName: String
+    role: String!
+    createdAt: String
+    updatedAt: String
+}
+
+type Appointment {
+    id: ID!
+    doctor: User!
+    patient: User!
+    appointmentDate: String!
+    status: String!
+    notes: String
+    createdAt: String
+    updatedAt: String
+}

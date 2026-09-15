@@ -1,0 +1,241 @@
+{
+  "info": {
+    "name": "Healthcare System API",
+    "description": "Collection para testes da API de Agendamentos e Notificações",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Appointments",
+      "item": [
+        {
+          "name": "Create Appointment",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "doctor1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"doctorId\": 1,\n  \"patientId\": 3,\n  \"appointmentDate\": \"2024-12-20T10:00:00\",\n  \"notes\": \"Consulta de rotina\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/appointments",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments"]
+            }
+          }
+        },
+        {
+          "name": "Update Appointment",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "doctor1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"appointmentDate\": \"2024-12-21T10:00:00\",\n  \"status\": \"CONFIRMED\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/api/appointments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Appointment",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "patient1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/appointments/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient Appointments",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "patient1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/appointments/patient/3",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments", "patient", "3"]
+            }
+          }
+        },
+        {
+          "name": "Get Patient Future Appointments",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "patient1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/appointments/patient/3/future",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments", "patient", "3", "future"]
+            }
+          }
+        },
+        {
+          "name": "Get Doctor Appointments",
+          "request": {
+            "auth": {
+              "type": "basic",
+              "basic": [
+                {
+                  "key": "username",
+                  "value": "doctor1"
+                },
+                {
+                  "key": "password",
+                  "value": "password"
+                }
+              ]
+            },
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:8081/api/appointments/doctor/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["api", "appointments", "doctor", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "GraphQL Queries",
+      "item": [
+        {
+          "name": "Get Patient Medical History",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { getPatientMedicalHistory(patientId: 3) { id diagnosis treatment medications observations patient { fullName email } } }\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["graphql"]
+            }
+          }
+        },
+        {
+          "name": "Get Medical History by ID",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"query { getMedicalHistory(id: 1) { id diagnosis treatment medications createdAt } }\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8081/graphql",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8081",
+              "path": ["graphql"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

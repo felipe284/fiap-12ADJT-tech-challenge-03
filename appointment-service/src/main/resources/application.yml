@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: appointment-service
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  datasource:
+    url: jdbc:mysql://mysql:3306/healthcare_db
+    username: healthcare
+    password: healthcare
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: guest
+    password: guest
+  graphql:
+    schema:
+      locations: classpath:graphql/
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: INFO
+    com.fiap: DEBUG
