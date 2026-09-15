@@ -191,3 +191,28 @@ Importação:
 Observação: a collection deve usar `http://localhost:8081` para endpoints do Appointment Service.
 
 ---
+
+## Testes unitários e cobertura
+
+O repositório possui testes unitários para os serviços principais e para o listener de mensagens.
+
+Para executar:
+
+```bash
+docker compose run --rm appointment-service mvn test -f appointment-service/pom.xml
+docker compose run --rm notification-service mvn test -f notification-service/pom.xml
+```
+
+Para gerar relatório de cobertura (JaCoCo):
+
+```bash
+docker compose run --rm appointment-service mvn verify -f appointment-service/pom.xml
+docker compose run --rm notification-service mvn verify -f notification-service/pom.xml
+```
+
+Relatórios:
+
+```text
+appointment-service/target/site/jacoco/index.html
+notification-service/target/site/jacoco/index.html
+```
